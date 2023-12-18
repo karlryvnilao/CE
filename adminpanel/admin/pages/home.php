@@ -1,3 +1,33 @@
+<?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "cee_db";
+
+try {
+  $conn = new PDO("mysql:host={$host};dbname={$db};", $user, $pass);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (Exception $e) {
+  die("Error: " . $e->getMessage());
+}
+
+// Function to get total count from a table
+function getTotalCount($conn, $tableName)
+{
+  $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM $tableName");
+  $stmt->execute();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result['total'];
+}
+
+// Get total counts
+$totalExaminees = getTotalCount($conn, 'examinee_tbl');
+$totalCourses = getTotalCount($conn, 'course_tbl');
+$totalExams = getTotalCount($conn, 'exam_tbl');
+$totalModules = getTotalCount($conn, 'module_tbl');
+$totalTasks = getTotalCount($conn, 'task_tbl');
+$totalFeedbacks = getTotalCount($conn, 'feedbacks_tbl');
+?>
 
 
 <div class="app-main__outer">
@@ -67,64 +97,65 @@
                         </div>
                     </div>   
                  </div>
-            </div>            <div class="row">
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-midnight-bloom">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Total Course</div>
-                                <div class="widget-subheading" style="color:transparent;">.</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white">
-                                    <span><?php echo $totalCourse = $selCourse['totCourse']; ?></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-arielle-smile">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Total Exam</div>
-                                <div class="widget-subheading" style="color:transparent;">.</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white">
-                                    <span><?php echo $totalCourse = $selExam['totExam']; ?></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-grow-early">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Total Examinee</div>
-                                <div class="widget-subheading" style="color:transparent;">.</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white"><span>46%</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                    <div class="card mb-3 widget-content bg-premium-dark">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Products Sold</div>
-                                <div class="widget-subheading">Revenue streams</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-warning"><span>$14M</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <div class="container mt-5">    
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Examinees</h5>
+          <p class="card-text"><?php echo $totalExaminees; ?></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Courses</h5>
+          <p class="card-text"><?php echo $totalCourses; ?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Exams</h5>
+          <p class="card-text"><?php echo $totalExams; ?></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Modules</h5>
+          <p class="card-text"><?php echo $totalModules; ?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Tasks</h5>
+          <p class="card-text"><?php echo $totalTasks; ?></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Feedbacks</h5>
+          <p class="card-text"><?php echo $totalFeedbacks; ?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     
             <!-- <div class="row">
                 <div class="col-md-6 col-xl-4">

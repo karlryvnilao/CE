@@ -188,7 +188,7 @@ if(data.res == "success")
   {
 Swal.fire(
   'Success',
-  'your feedbacks has been submitted successfully',
+  'your Task has been submitted successfully',
   'success'
   )
 $('#submitTask')[0].reset();

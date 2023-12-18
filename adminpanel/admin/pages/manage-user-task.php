@@ -44,7 +44,7 @@
                                            <td><?php echo $selTaskRow['usertask_score']; ?></td>
                                            <td><?php echo $selTaskRow['usertask_grade']; ?></td>
                                            <td>
-                                               <a rel="facebox" href="facebox_modal/updateUserTask.php?id=<?php echo $selTaskRow['task_id']; ?>" class="btn btn-sm btn-success">view</a>
+                                               <a rel="facebox" href="facebox_modal/updateUserTask.php?id=<?php echo $selTaskRow['usertask_id']; ?>" class="btn btn-sm btn-success">view</a>
 
                                            </td>
                                         </tr>

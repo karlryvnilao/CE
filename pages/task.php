@@ -1,8 +1,13 @@
 <?php 
   include("conn.php");
   include('query/selectData.php');
- ?>
+
+
+?>
+
 <script src="https://cdn.tiny.cloud/1/8m9ihr9prsil9tzz8wopbneg005dfov733j6zppxux8hkpey/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <div class="app-main__outer">
         <div class="app-main__inner">
              
@@ -127,7 +132,7 @@
                                             </td>
 
                                             <td class="text-center">
-                                             <a href="?page=task-exam&task_id=<?php echo $selExamRow['task_id']; ?>"  class="btn btn-success btn-sm">View</a>
+                                             <a href="?page=task-exam&task_id=<?php echo $selTaskRow['task_id']; ?>"  class="btn btn-success btn-sm">View</a>
                                             </td>
                                         </tr>
 
@@ -170,4 +175,32 @@
     tinydrive_google_drive_key: 'YOUR_GOOGLE_DRIVE_KEY',
     tinydrive_google_drive_client_id: 'YOUR_GOOGLE_DRIVE_CLIENT_ID'
        });
+
+
+       function submitForm() {
+        var task_id = document.getElementById('task_id').value;
+        var exmneFName = document.getElementById('exmneFName').value;
+        var answer = document.getElementById('myTextarea').value;
+
+        var data = {
+            task_id: task_id,
+            exmneFName: exmneFName,
+            answer: answer
+        };
+
+        // Use AJAX to send data to the PHP script
+        $.ajax({
+            type: 'POST',
+            url: 'insert.php', // Update with the actual path to your PHP script
+            data: { data: JSON.stringify(data) },
+            success: function(response) {
+                console.log(response);
+                // Handle success, if needed
+            },
+            error: function(error) {
+                console.error(error);
+                // Handle error, if needed
+            }
+        });
+    }
 </script>
