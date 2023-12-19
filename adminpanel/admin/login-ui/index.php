@@ -44,6 +44,9 @@
 						<button type="submit" class="login100-form-btn">
 							Login
 						</button>
+						<div class="ml-5 mt-3">
+						<a href="/CEE/index.php">User</a>
+						</div>
 					</div>
 				</form>
 			</div>

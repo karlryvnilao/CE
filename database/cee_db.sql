@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2023 at 11:13 AM
+-- Generation Time: Dec 19, 2023 at 06:31 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -140,7 +140,8 @@ INSERT INTO `exam_answers` (`exans_id`, `axmne_id`, `exam_id`, `quest_id`, `exan
 (320, 8, 12, 25, 'Diode, inverted, pointer', 'new', '2020-01-05 03:18:35'),
 (321, 8, 11, 29, 'asd', 'new', '2023-12-12 02:23:45'),
 (322, 8, 11, 28, 'q1', 'new', '2023-12-12 02:23:45'),
-(323, 4, 24, 32, 'vbssbdf', 'new', '2023-12-12 02:50:47');
+(323, 4, 24, 32, 'vbssbdf', 'new', '2023-12-12 02:50:47'),
+(324, 8, 24, 32, 'gdhjnf ghn', 'new', '2023-12-18 11:07:14');
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,8 @@ INSERT INTO `exam_attempt` (`examat_id`, `exmne_id`, `exam_id`, `examat_status`)
 (53, 4, 12, 'used'),
 (54, 8, 12, 'used'),
 (55, 8, 11, 'used'),
-(56, 4, 24, 'used');
+(56, 4, 24, 'used'),
+(57, 8, 24, 'used');
 
 -- --------------------------------------------------------
 
@@ -331,7 +333,8 @@ CREATE TABLE `usertask_tbl` (
 --
 
 INSERT INTO `usertask_tbl` (`usertask_id`, `task_id`, `usertask_answer`, `exmne_fullname`, `usertask_submit`, `usertask_score`, `usertask_grade`, `usertask_date`) VALUES
-(1, 1, 'test', 'test', '', '', '', 'December 29, 2023');
+(1, 1, 'test', 'test', 'ddas', 'dsadsad', 'sdadads', 'December 29, 2023'),
+(3, 1, '<p>test</p>', 'DAVE LIMASAC', 'Done', '97', 'A+', 'December 17, 2023');
 
 --
 -- Indexes for dumped tables
@@ -429,13 +432,13 @@ ALTER TABLE `examinee_tbl`
 -- AUTO_INCREMENT for table `exam_answers`
 --
 ALTER TABLE `exam_answers`
-  MODIFY `exans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=324;
+  MODIFY `exans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=325;
 
 --
 -- AUTO_INCREMENT for table `exam_attempt`
 --
 ALTER TABLE `exam_attempt`
-  MODIFY `examat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `examat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `exam_question_tbl`
@@ -471,7 +474,7 @@ ALTER TABLE `task_tbl`
 -- AUTO_INCREMENT for table `usertask_tbl`
 --
 ALTER TABLE `usertask_tbl`
-  MODIFY `usertask_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `usertask_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

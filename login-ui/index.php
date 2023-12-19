@@ -44,7 +44,11 @@
 						<button type="submit" class="login100-form-btn">
 							Login
 						</button>
+						<div class="ml-5 mt-3">
+						<a href="/CEE/adminpanel/admin/index.php">Admin</a>
+						</div>
 					</div>
+					
 				</form>
 			</div>
 		</div>
