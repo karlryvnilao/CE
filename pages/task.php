@@ -5,8 +5,6 @@
 
 ?>
 
-<script src="https://cdn.tiny.cloud/1/8m9ihr9prsil9tzz8wopbneg005dfov733j6zppxux8hkpey/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <div class="app-main__outer">
         <div class="app-main__inner">
@@ -34,9 +32,6 @@
                         </div>
                     </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="tableList">
-                          <tbody>
                             <?php
                              $selTask = $conn->query("SELECT task_desc FROM task_tbl");
                              if($selTask->rowCount() > 0)
@@ -51,32 +46,28 @@
                             <input type="hidden" name="task_id" id="task_id" value="<?php echo $task_id; ?>">
                             <input type="hidden" name="exmneFName" id="exmneFName" value="<?php echo strtoupper($selExmneeData['exmne_fullname']); ?>">
 
-                            <div class="form-group mt-3">
-                              <textarea id="myTextarea" name="answer"></textarea>
-                            </div>
+                            <div id="summernote"></div>
+
                           <button class="btn btn-outline-dark mt-5" name="submit" style="background-color:transparent;">
                             <i class="fa fa-pencil"></i> Submit
                           </button>
                             </form>
-                          </tbody>
-                        </table>
-                    </div>
 
 
 
-                   <?php
+                <?php
                 }
                 else
                 { ?>
                 <div class="app-page-title">
                 <div class="page-title-wrapper">
                     <div class="page-title-heading">
-                        <div><b>RANKING BY EXAM</b></div>
+                        <div><b>All Task</b></div>
                     </div>
                 </div>
-                </div> 
+                </div>
 
-                 <div class="col-md-12">
+                <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-header">ExAM List
                     </div>
@@ -161,26 +152,15 @@
       
         
 </div>
-
-<!-- Modules -->
-<script src="tinymce/js/tinymce/tinymce.min.js"></script>
 <script>
- tinymce.init({
-    selector: 'textarea#myTextarea',
-    plugins: 'image media link tinydrive code imagetools',
-    height: 600,
-    toolbar: 'insertfile image link | code',
-    tinydrive_token_provider: 'URL_TO_YOUR_TOKEN_PROVIDER',
-    tinydrive_dropbox_app_key: 'YOUR_DROPBOX_APP_KEY',
-    tinydrive_google_drive_key: 'YOUR_GOOGLE_DRIVE_KEY',
-    tinydrive_google_drive_client_id: 'YOUR_GOOGLE_DRIVE_CLIENT_ID'
-       });
+    
 
 
-       function submitForm() {
+
+       function submitTask() {
         var task_id = document.getElementById('task_id').value;
         var exmneFName = document.getElementById('exmneFName').value;
-        var answer = document.getElementById('myTextarea').value;
+        var answer = document.getElementById('summernote').value;
 
         var data = {
             task_id: task_id,

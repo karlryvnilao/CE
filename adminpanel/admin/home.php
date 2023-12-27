@@ -6,19 +6,14 @@ if(!isset($_SESSION['admin']['adminnakalogin']) == true) header("location:index.
 
  ?>
 <?php include("../../conn.php"); ?>
-<!-- MAO NI ANG HEADER -->
 <?php include("includes/header.php"); ?>      
 
-<!-- UI THEME DIRI -->
-<?php include("includes/ui-theme.php"); ?>
+
 
 <div class="app-main">
-<!-- sidebar diri  -->
 <?php include("includes/sidebar.php"); ?>
 
 
-
-<!-- Condition If unza nga page gi click -->
 <?php 
    @$page = $_GET['page'];
 
