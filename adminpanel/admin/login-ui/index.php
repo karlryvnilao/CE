@@ -45,7 +45,7 @@
 							Login
 						</button>
 						<div class="ml-5 mt-3">
-						<a href="/CEE/index.php">User</a>
+						<a href="../../index.php">User</a>
 						</div>
 					</div>
 				</form>

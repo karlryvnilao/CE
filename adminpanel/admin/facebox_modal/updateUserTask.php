@@ -8,7 +8,10 @@
  ?>
 
 <fieldset style="width:543px;" >
-	<legend><i class="facebox-header"><i class="edit large icon"></i>&nbsp;Grade <b>( <?php echo strtoupper($selTask['usertask_answer']); ?> )</b></i></legend>
+	<legend><i class="facebox-header"><i class="edit large icon"></i>&nbsp;Submitted Answer</i></legend>
+  <div class="border border-5 text-center p-3">
+  <?php echo ($selTask['usertask_answer']); ?>
+  </div>
   <div class="col-md-12 mt-4">
 <form method="post" id="updateUsertaskFrm">
      <div class="form-group">

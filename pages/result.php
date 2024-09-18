@@ -25,7 +25,7 @@
         <div class="row col-md-12">
         	<h1 class="text-primary">RESULT'S</h1>
         </div>
-
+        <div id="print-container">
         <div class="row col-md-6 float-left">
         	<div class="main-card mb-3 card">
                 <div class="card-body">
@@ -112,8 +112,44 @@
             </div>
             </div>
         </div>
+        </div>
+        <div class="btn btn-solid">
+                    <button onclick="printExamResults()">Print Results</button>
+                    </div>
+
     </div>
 
 
     </div>
 </div>
+<script>
+    function printExamResults() {
+        // Get the content you want to print
+        var printContent = document.getElementById('print-container').innerHTML;
+
+        // Open a new window for printing
+        var printWindow = window.open('', '_blank');
+
+        // Write the content to the new window
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Print Exam Results</title>
+                <!-- Include your CSS stylesheets if needed -->
+            </head>
+            <body>
+                ${printContent}
+            </body>
+            </html>
+        `);
+
+        // Close the document stream
+        printWindow.document.close();
+
+        // Trigger the print dialog
+        printWindow.print();
+    }
+</script>

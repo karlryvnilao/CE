@@ -16,8 +16,8 @@
  	{
  		$res = array("res" => "failed");
  	}
- 
 
 
- echo json_encode($res);
- ?>
+
+echo json_encode($res);
+?>

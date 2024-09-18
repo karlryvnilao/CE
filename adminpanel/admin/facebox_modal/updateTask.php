@@ -14,19 +14,19 @@
      <div class="form-group">
         <legend>Title</legend>
         <input type="hidden" name="task_id" value="<?php echo $id; ?>">
-        <input type="" name="title" class="form-control" required="" value="<?php echo $selTask['task_title']; ?>" >
+        <input type="" name="taskTitle" class="form-control" required="" value="<?php echo $selTask['task_title']; ?>" >
      </div>
      <div class="form-group">
         <legend>Start Date</legend>
-        <input type="date" name="SDate" class="form-control" required="" value="<?php echo date('Y-m-d',strtotime($selTask["task_SDate"])) ?>"/>
+        <input type="date" name="taskSdate" class="form-control" required="" value="<?php echo date('Y-m-d',strtotime($selTask["task_SDate"])) ?>"/>
      </div>
      <div class="form-group">
         <legend>End Date</legend>
-        <input type="date" name="EDate" class="form-control" required="" value="<?php echo date('Y-m-d',strtotime($selTask["task_EDate"])) ?>"/>
+        <input type="date" name="taskEdate" class="form-control" required="" value="<?php echo date('Y-m-d',strtotime($selTask["task_EDate"])) ?>"/>
      </div>
      <div class="form-group">
         <legend>Description</legend>
-        <input type="" name="desc" class="form-control" required="" value="<?php echo $selTask['task_desc']; ?>" >
+        <input type="" name="taskDesc" class="form-control" required="" value="<?php echo $selTask['task_desc']; ?>" >
      </div>
 
      

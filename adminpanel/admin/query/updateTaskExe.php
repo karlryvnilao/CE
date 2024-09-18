@@ -3,10 +3,10 @@
  extract($_POST);
 
 
-$updModule = $conn->query("UPDATE task_tbl SET task_title='$title', task_SDate='$SDate', task_EDate='$EDate', task_desc='$desc' WHERE task_id='$task_id' ");
+$updModule = $conn->query("UPDATE task_tbl SET task_title='$taskTitle', task_SDate='$taskSdate', task_EDate='$taskEdate', task_desc='$taskDesc' WHERE task_id='$task_id' ");
 if($updModule)
 {
-	$res = array("res" => "success", "title" => $title);
+	$res = array("res" => "success", "title" => $taskTitle);
 }
 else
 {

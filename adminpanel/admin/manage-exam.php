@@ -74,18 +74,28 @@ if(!isset($_SESSION['admin']['adminnakalogin']) == true) header("location:index.
                               <div class="form-group">
                                 <label>Exam Description</label>
                                 <input type="" name="examDesc" class="form-control" required="" value="<?php echo $selExamRow['ex_description']; ?>">
-                              </div>  
+                              </div>
+                              
+                              <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="" name="startDate" class="form-control" required="" value="<?php echo $selExamRow['ex_description']; ?>">
+                              </div>
+
+                              <div class="form-group">
+                                <label>End Date</label>
+                                <input type="" name="endDate" class="form-control" required="" value="<?php echo $selExamRow['ex_description']; ?>">
+                              </div>
 
                               <div class="form-group">
                                 <label>Exam Time limit</label>
                                 <select class="form-control" name="examLimit" required="">
                                   <option value="<?php echo $selExamRow['ex_time_limit']; ?>"><?php echo $selExamRow['ex_time_limit']; ?> Minutes</option>
-                                  <option value="10">10 Minutes</option> 
-                                  <option value="20">20 Minutes</option> 
-                                  <option value="30">30 Minutes</option> 
-                                  <option value="40">40 Minutes</option> 
-                                  <option value="50">50 Minutes</option> 
-                                  <option value="60">60 Minutes</option> 
+                                  <option value="10">10 Minutes</option>
+                                  <option value="20">20 Minutes</option>
+                                  <option value="30">30 Minutes</option>
+                                  <option value="40">40 Minutes</option>
+                                  <option value="50">50 Minutes</option>
+                                  <option value="60">60 Minutes</option>
                                 </select>
                               </div>
 

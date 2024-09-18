@@ -8,7 +8,7 @@
                 </div>
                 </div> 
 
-                 <div class="col-md-12">
+                <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-header">Feedback's List
                     </div>
@@ -48,7 +48,53 @@
                         </table>
                     </div>
                 </div>
-            </div>   
+            </div>
+
+            <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-header">Message's List
+                    </div>
+                    <div class="table-responsive">
+                        <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="tableList">
+                            <thead>
+                            <tr>
+                                <th class="text-left pl-4" width="20%">Name</th>
+                                <th class="text-left ">Email</th>
+                                <th class="text-center" width="15%">Subject</th>
+                                <th class="text-left pl-4" width="20%">Message</th>
+                                <th class="text-left ">Created at</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                              <?php 
+                                $selExam = $conn->query("SELECT * FROM contact ORDER BY id DESC ");
+                                if($selExam->rowCount() > 0)
+                                {
+                                    while ($selContactRow = $selExam->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        <tr>
+                                            <td class="pl-4"><?php echo $selContactRow['name']; ?></td>
+                                            <td><?php echo $selContactRow['email']; ?></td>
+                                            <td><?php echo $selContactRow['subject']; ?></td>
+                                            <td><?php echo $selContactRow['message']; ?></td>
+                                            <td><?php echo $selContactRow['created_at']; ?></td>
+                                        </tr>
+
+                                    <?php }
+                                }
+                                else
+                                { ?>
+                                    <tr>
+                                      <td colspan="5">
+                                        <h3 class="p-3">No Feedback found</h3>
+                                      </td>
+                                    </tr>
+                                <?php }
+                               ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
                     
      
       

@@ -11,7 +11,8 @@
             
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
-                    <div class="card-header">Examinee Result
+                    <div class="card-header d-flex justify-content-between"><h6>Examinee Result</h6>
+                    <button type="button" class="btn btn-primary" onclick="printTable()">Print</button>
                     </div>
                     <div class="table-responsive">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="tableList">
@@ -84,10 +85,37 @@
                                ?>
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
             </div>
-      
-        
 </div>
-         
+<!-- Add this script within your HTML, either in the head or just before the closing </body> tag -->
+<script>
+   function printTable() {
+    // Open a new window for printing
+    var printWindow = window.open('', '_blank');
+
+    // Append the table HTML to the new window
+    printWindow.document.write('<html><head><title></title>');
+    printWindow.document.write('<link rel="stylesheet" type="text/css" href="css/mycss.css">');
+
+    // Add additional styles for printing
+    printWindow.document.write('<style>');
+    printWindow.document.write('table { border-collapse: collapse; width: 100%; }');
+    printWindow.document.write('th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }');
+    printWindow.document.write('th { background-color: #f2f2f2; }');
+    printWindow.document.write('</style>');
+
+    printWindow.document.write('</head><body>');
+    printWindow.document.write('<h2>Examinee Results</h2>');
+    printWindow.document.write(document.getElementById('tableList').outerHTML);
+    printWindow.document.write('</body></html>');
+
+    // Close the new window after printing
+    printWindow.document.close();
+    printWindow.print();
+}
+
+</script>
+

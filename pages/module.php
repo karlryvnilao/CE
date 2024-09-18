@@ -40,6 +40,13 @@
       line-height: 30px;
       color: #fff;
     }
+    #viewed-indicator{
+        background-color: #4CAF50;
+        color: #fff;
+    }
+    #viewed-indicator.hide{
+        display: none;
+    }
 
  </style>
 
@@ -80,32 +87,34 @@
                 <div class="main-card mb-3 card">
                     <div class="card-header">
                     <?php echo $selModule['title']; ?>
-                          
+                    <div id="viewed-indicator" class="hide">Done</div>
                     </div>
                     <div class="table-responsive">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="tableList">
                             <h3 class="p-2 text-danger">Instructions</h3>
-                        <div class="p-2 h-100">
-                            <?php echo $selModule['description']; ?>
-                          </div>
+                            <div class="p-2 h-100">
+                                <?php
+                                $fileUrl = 'adminpanel/admin/uploads/' . $selModule['file_name']; // Set the correct path to your files
+                                $title = $selModule['file_name'];
+                                echo "<a href='{$fileUrl}' download='{$selModule['file_name']}'>$title</a>";
+                                ?>
+                            </div>
                           </table>
                     </div>
                         
                     </div>
     </div>
     <div class="col-md-2">
-                <div class="main-card mb-3 card">
-                    <div class="card-header">
-                    <h5>Progress</h5>
-                          
-                    </div>
-                    <div class="table-responsive">
-                    <div id="progress-container">
-                    <div id="progress-bar">0%</div>
-                    </div>
-                    </div>
-                        
-                    </div>
+        <div class="main-card mb-3 card">
+            <div class="card-header">
+            <h5>Progress</h5>
+                    
+            </div>
+            <div class="table-responsive">
+            <div id="progress-container">
+            <div id="progress-bar">0%</div>
+            </div>
+        </div>
     </div>
     </div>
 
@@ -115,24 +124,36 @@
 
     </div>
 </div>
+<script type="text/javascript" src="js/jquery.js"></script>
 <script>
-     let pageViews = 0;
-
-    function updateProgressBar() {
-        const progressBar = document.getElementById('progress-bar');
-        const progress = Math.min(pageViews * 20, 100); // Each viewed page contributes 20% to the progress
-        progressBar.style.width = progress + '%';
-        progressBar.innerHTML = progress + '%';
+    let pageViews = 0;
+    const queryParams = new URLSearchParams(window.location.toString());
+    var moduleId = queryParams.has('id') ? queryParams.get('id') : null
+    if(!moduleId) {
+        throw Error("Parameter 'id' in URL is modified")
     }
+    $.ajax({
+        method:'post',
+        url: `includes/module-progress.php?id=${moduleId}`,
+    })
+    .done((data)=> {
+        function updateProgressBar(pageViews, total) {
+            const progressBar = document.getElementById('progress-bar');
+            const progress = Math.round((pageViews / total) * 100); // Each viewed page contributes 20% to the progress
+            progressBar.style.width = progress + '%';
+            progressBar.innerHTML = progress + '%';
+        }
+        data = JSON.parse(data);
+        if ('error' in data){
+            throw Error(data?.error);
+        }
+        const {total_modules, viewed_modules, is_viewed} = data;
+        if (is_viewed){
+            $('#viewed-indicator').removeClass('hide')
+        }
+        updateProgressBar(viewed_modules, total_modules);
+    })
+    .fail((e)=> console.warn(e))
+    
 
-    // Simulate page viewed event
-    function pageViewed() {
-        pageViews++;
-        updateProgressBar();
-    }
-
-    // Call the function to simulate initial page views
-    pageViewed();
-    pageViewed();
-    pageViewed();
 </script>

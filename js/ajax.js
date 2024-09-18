@@ -192,7 +192,7 @@ Swal.fire(
   'success'
   )
 $('#submitTask')[0].reset();
-
+refreshDiv(); 
   }
 },'json');
 

@@ -23,10 +23,10 @@
                         <div class="page-title-heading">
                             <div><b class="text-primary">RANKING BY EXAM</b><br>
                                 Exam Name : <?php echo $selEx['ex_title']; ?><br><br>
-                               <span class="border" style="padding:10px;color:black;background-color: yellow;">Excellence</span>
-                               <span class="border" style="padding:10px;color:white;background-color: green;">Very Good</span>
-                               <span class="border" style="padding:10px;color:white;background-color: blue;">Good</span>
-                               <span class="border" style="padding:10px;color:white;background-color: red;">Failed</span>
+                               <span class="border" style="padding:10px;color:black;background-color: #1cc88a;">Excellence</span>
+                               <span class="border" style="padding:10px;color:white;background-color: #36b9cc;">Very Good</span>
+                               <span class="border" style="padding:10px;color:white;background-color: #4e73df;">Good</span>
+                               <span class="border" style="padding:10px;color:white;background-color: #e74a3b;">Failed</span>
                                <span class="border" style="padding:10px;color:black;background-color: #E9ECEE;">Not Answering</span>
                             </div>
                         </div>
@@ -64,17 +64,17 @@
                                              }
                                              else if($ans >= 90)
                                              {
-                                                echo "background-color: yellow;";
+                                                echo "background-color: #1cc88a;";
                                              } 
                                              else if($ans >= 80){
-                                                echo "background-color: green;color:white";
+                                                echo "background-color: #36b9cc;color:white";
                                              }
                                              else if($ans >= 75){
-                                                echo "background-color: blue;color:white";
+                                                echo "background-color: #4e73df;color:white";
                                              }
                                              else
                                              {
-                                                echo "background-color: red;color:white";
+                                                echo "background-color: #e74a3b;color:white";
                                              }
                                            
                                             

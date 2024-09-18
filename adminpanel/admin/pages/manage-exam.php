@@ -19,6 +19,8 @@
                                 <th class="text-left pl-4">Exam Title</th>
                                 <th class="text-left ">Course</th>
                                 <th class="text-left ">Description</th>
+                                <th class="text-left ">Start Date</th>
+                                <th class="text-left ">End Date</th>
                                 <th class="text-left ">Time limit</th>  
                                 <th class="text-left ">Display limit</th>  
                                 <th class="text-center" width="20%">Action</th>
@@ -41,6 +43,8 @@
                                                     }
                                                 ?>
                                             </td>
+                                            <td><?php echo $selExamRow['ex_description']; ?></td>
+                                            <td><?php echo $selExamRow['ex_time_limit']; ?></td>
                                             <td><?php echo $selExamRow['ex_description']; ?></td>
                                             <td><?php echo $selExamRow['ex_time_limit']; ?></td>
                                             <td><?php echo $selExamRow['ex_questlimit_display']; ?></td>

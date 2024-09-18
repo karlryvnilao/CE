@@ -70,10 +70,9 @@ if(!isset($_SESSION['admin']['adminnakalogin']) == true) header("location:index.
    }
 
 
- ?> 
+ ?>
 
 
-<!-- MAO NI IYA FOOTER -->
 <?php include("includes/footer.php"); ?>
 
 <?php include("includes/modals.php"); ?>

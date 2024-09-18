@@ -19,6 +19,11 @@
     <!-- MAIN CSS NIYA -->
     <link href="./main.css" rel="stylesheet">
     <link href="css/sweetalert.css" rel="stylesheet">
+    <style>
+        .note-modal-backdrop {
+      z-index: -1 !important;
+    }
+    </style>
 </head>
 <body id="body">
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">

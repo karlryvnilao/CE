@@ -92,12 +92,12 @@
 
                 <?php }
                 ?>
-                       <tr>
-                             <td style="padding: 20px;">
-                                 <button type="button" class="btn btn-xlg btn-warning p-3 pl-4 pr-4" id="resetExamFrm">Reset</button>
-                                 <input name="submit" type="submit" value="Submit" class="btn btn-xlg btn-primary p-3 pl-4 pr-4 float-right" id="submitAnswerFrmBtn">
-                             </td>
-                         </tr>
+                        <tr>
+                            <td style="padding: 20px; float:right;">
+                                <input name="submit" type="submit" value="Submit" class="btn btn-xlg btn-primary p-3 pl-4 pr-4" id="submitAnswerFrmBtn">
+                                <button type="button" class="btn btn-xlg btn-warning p-2 pl-4 pr-4" id="resetExamFrm">Reset</button>
+                            </td>
+                        </tr>
 
                 <?php
             }
@@ -105,10 +105,10 @@
             { ?>
                 <b>No question at this moment</b>
             <?php }
-         ?>   
-              </table>
+        ?>
+            </table>
 
         </form>
     </div>
 </div>
- 
+

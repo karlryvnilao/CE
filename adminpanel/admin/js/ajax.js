@@ -387,48 +387,33 @@ function refreshDiv()
 
 
 // Add modules
-$(document).on("submit","#addModuleFrm" , function(){
-  $.post("query/addmod.php", $(this).serialize() , function(data){
-    if(data.res == "noDesc")
-    {
-      Swal.fire(
-          'No Desc',
-          'Please select Description',
-          'error'
-       )
-    }
-    else if(data.res == "title")
-    {
-      Swal.fire(
-          'No Title',
-          'Please select Title',
-          'error'
-       )
-    }
-    else if(data.res == "success")
-    {
-      Swal.fire(
-          'Success',
-          data.msg + ' are now successfully added',
-          'success'
-       )
-        refreshDiv();
-        $('#addModuleFrm')[0].reset();
-    }
-    else if(data.res == "failed")
-    {
-      Swal.fire(
-          "Something's Went Wrong",
-          '',
-          'error'
-       )
-    }
-
-
-    
-  },'json')
+$(document).on("submit", "#addModuleFrm", function () {
+  $.post("query/addmod.php", $(this).serialize(), function (data) {
+      if (data.res == "titleexist") {
+          Swal.fire(
+              'Title Exists',
+              'The title already exists. Please choose a different title.',
+              'error'
+          );
+      } else if (data.res == "success") {
+          Swal.fire(
+              'Success',
+              data.msg + ' has been successfully added',
+              'success'
+          );
+          refreshDiv();
+          $('#addModuleFrm')[0].reset();
+      } else if (data.res == "failed") {
+          Swal.fire(
+              "Something Went Wrong",
+              '',
+              'error'
+          );
+      }
+  }, 'json');
   return false;
 });
+
 
 
 // update module
@@ -464,7 +449,7 @@ $(document).on("submit","#addTaskFrm" , function(){
           'No Desc',
           'Please select Description',
           'error'
-       )
+      )
     }
     if(data.res == "noSDate")
     {
@@ -472,7 +457,7 @@ $(document).on("submit","#addTaskFrm" , function(){
           'No Start Date',
           'Please select Start Date',
           'error'
-       )
+      )
     }
     if(data.res == "noEDate")
     {
@@ -480,37 +465,27 @@ $(document).on("submit","#addTaskFrm" , function(){
           'No End Date',
           'Please select End Date',
           'error'
-       )
+      )
     }
     else if(data.res == "titleexist")
     {
       Swal.fire(
         'Already Exist',
-        data.examTitle.toUpperCase() + '<br>Already Exist',
+        data.taskTitle.toUpperCase() + '<br>Already Exist',
         'error'
       )
     }
     else if(data.res == "success")
     {
       Swal.fire(
-          'Success',
-          data.msg + ' are now successfully added',
-          'success'
-       )
-        refreshDiv();
-        $('#addTaskFrm')[0].reset();
+        'Success',
+        data.taskTitle.toUpperCase() + '<br>Successfully Added',
+        'success'
+      )
+          
+          $('#addTaskFrm')[0].reset();
+          refreshDiv();
     }
-    else if(data.res == "failed")
-    {
-      Swal.fire(
-          "Something's Went Wrong",
-          '',
-          'error'
-       )
-    }
-
-
-    
   },'json')
   return false;
 });
@@ -522,7 +497,7 @@ $(document).on("submit","#updateTaskFrm" , function(){
      {
         Swal.fire(
             'Success',
-            data.title   + ' <br>has been successfully updated!',
+            data.taskTitle   + ' <br>has been successfully updated!',
             'success'
           )
           refreshDiv();

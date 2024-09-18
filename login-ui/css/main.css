@@ -167,18 +167,21 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background: #ebeeef;
+  background-image: url(../images/login.jpg) !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  flex-direction: row-reverse;
 }
 
 
@@ -188,6 +191,7 @@ iframe {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  margin-right: 150px;
 }
 
 /*==================================================================

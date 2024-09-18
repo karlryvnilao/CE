@@ -11,6 +11,6 @@ $exmneCourse =  $selExmneeData['exmne_course'];
 $selExam = $conn->query("SELECT * FROM exam_tbl WHERE cou_id='$exmneCourse' ORDER BY ex_id DESC ");
 
 
-//
+
 
  ?>

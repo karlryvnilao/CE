@@ -1,0 +1,144 @@
+<?php 
+  include("conn.php");
+  include('query/selectData.php');
+
+
+?>
+
+
+<div class="app-main__outer">
+    <div class="app-main__inner">
+
+        <?php
+        @$task_id = $_GET['task_id'];
+
+        if ($task_id != "") {
+            $selTask = $conn->query("SELECT * FROM task_tbl WHERE task_id='$task_id' ")->fetch(PDO::FETCH_ASSOC);
+
+        ?>
+            <div class="app-page-title">
+                <div class="page-title-wrapper">
+                    <div class="page-title-heading">
+                        <div><b class="text-primary">Task</b><br>
+                            Prepare Answer for <?php echo $selTask['task_title']; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+            echo $selTask['task_desc']; // Display task_desc for the selected task
+            ?>
+            <br>
+            <form method="post" id="submitTask">
+                <input type="hidden" name="task_id" id="task_id" value="<?php echo $task_id; ?>">
+                <input type="hidden" name="exmneFName" id="exmneFName" value="<?php echo strtoupper($selExmneeData['exmne_fullname']); ?>">
+
+                <textarea id="summernote" name="answer"></textarea>
+
+                <button class="btn btn-outline-dark mt-5" name="submit" style="background-color:transparent;">
+                    <i class="fa fa-pencil"></i> Submit
+                </button>
+            </form>
+
+<?php
+} else { ?>
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div><b>All Task</b></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">ExAM List
+            </div>
+            <div class="table-responsive">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover" id="tableList">
+                    <thead>
+                        <tr>
+                            <th class="w-100">Task</th>
+                            <th class="text-center">Start</th>
+                            <th class="text-center">Due</th>
+                            <th class="text-center">Submitted</th>
+                            <th class="text-center">Score</th>
+                            <th class="text-center">Grade</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $selTask = $conn->query("SELECT * FROM task_tbl ORDER BY task_id DESC ");
+                        if ($selTask->rowCount() > 0) {
+                            while ($selTaskRow = $selTask->fetch(PDO::FETCH_ASSOC)) {
+                                $start_date = strtotime($selTaskRow['task_SDate']);
+                                $end_date = strtotime($selTaskRow['task_EDate']);
+                                $current_date = time();
+                                $is_enabled = ($current_date >= $start_date && $current_date <= $end_date);
+                        ?>
+                                <tr>
+                                    <td class="pl-4"><?php echo $selTaskRow['task_title']; ?></td>
+                                    <td class="text-right"><?php echo $selTaskRow['task_SDate']; ?></td>
+                                    <td class="text-right"><?php echo $selTaskRow['task_EDate']; ?></td>
+                                    <td class="text-right">
+                                        <?php
+                                            // Example: Displaying additional information from a database
+                                        
+                                        ?>
+                                    </td>
+                                    <td class="text-right">
+                                    <?php
+                                    
+                                    ?>
+                                    </td>
+                                    <td class="text-right">
+                                        <?php
+                                        
+                                        ?>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <button class="btn btn-success btn-sm" <?php echo $is_enabled ? '' : 'disabled'; ?>>
+                                            <a href="?page=task-exam&task_id=<?php echo $selTaskRow['task_id']; ?>" style="color: white; text-decoration: none;">
+                                                View
+                                            </a>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                        <?php }
+                        } else { ?>
+                            <tr>
+                                <td colspan="5">
+                                    <h3 class="p-3">No Exam Found</h3>
+                                </td>
+                            </tr>
+                        <?php }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<?php } ?>
+      
+        
+</div>
+<script>
+    $(document).ready(function () {
+        // Your existing JavaScript code
+
+        // Disable the "View" button if the end date has passed
+        let endDate = new Date("<?php echo $selTaskRow['task_EDate']; ?>");
+        let currentDate = new Date("<?php echo $selTaskRow['task_SDate']; ?>");
+        if (endDate < currentDate) {
+            $('button[disabled]').on('click', function (e) {
+                e.preventDefault(); // Prevent the default behavior
+            });
+        }
+    });
+
+</script>
+

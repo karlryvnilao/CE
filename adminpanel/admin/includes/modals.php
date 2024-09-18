@@ -1,7 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
-<!-- TinyMCE JavaScript -->
-
-<script src="https://cdn.tiny.cloud/1/8m9ihr9prsil9tzz8wopbneg005dfov733j6zppxux8hkpey/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <!-- Modal For Add Course -->
 <div class="modal fade" id="modalForAddCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,6 +94,16 @@
           </div>
 
           <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" name="startDate " id="startDate " class="form-control" required="">
+          </div>
+
+          <div class="form-group">
+            <label>End Date</label>
+            <input type="date" name="endDate" id="endDate " class="form-control" required="">
+          </div>
+
+          <div class="form-group">
             <label>Exam Time Limit</label>
             <select class="form-control" name="timeLimit" required="">
               <option value="0">Select time</option>
@@ -141,7 +150,7 @@
    <form class="refreshFrm" id="addExamineeFrm" method="post">
      <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Examinee</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Trainee</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -153,13 +162,13 @@
             <input type="" name="fullname" id="fullname" class="form-control" placeholder="Input Fullname" autocomplete="off" required="">
           </div>
           <div class="form-group">
-            <label>Birhdate</label>
-            <input type="date" name="bdate" id="bdate" class="form-control" placeholder="Input Birhdate" autocomplete="off" >
+            <label>Birthdate</label>
+            <input type="date" name="bdate" id="bdate" class="form-control" placeholder="Input Birthdate" autocomplete="off" >
           </div>
           <div class="form-group">
             <label>Gender</label>
             <select class="form-control" name="gender" id="gender">
-              <option value="0">Select gender</option>
+              <option value="0">Select</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
@@ -222,20 +231,20 @@
         <div class="col-md-12">
 				<div class="form-group">
 					<label for="" class="control-label">Title</label>
-          <input type="text" name="task_title" class="form-control form-control-sm" required>
+          <input type="text" name="taskTitle" class="form-control form-control-sm" required>
 				</div>
 				
 				<div class="form-group">
               <label for="" class="control-label">Start Date</label>
-              <input type="date" class="form-control form-control-sm" autocomplete="off" name="task_SDate" value="<?php echo isset($start_date) ? date("Y-m-d",strtotime($start_date)) : '' ?>">
+              <input type="date" class="form-control form-control-sm" autocomplete="off" name="taskSdate" value="<?php echo isset($start_date) ? date("Y-m-d",strtotime($start_date)) : '' ?>">
         </div>
         <div class="form-group">
               <label for="" class="control-label">End Date</label>
-              <input type="date" class="form-control form-control-sm" autocomplete="off" name="task_EDate" value="<?php echo isset($end_date) ? date("Y-m-d",strtotime($end_date)) : '' ?>">
+              <input type="date" class="form-control form-control-sm" autocomplete="off" name="taskEdate" value="<?php echo isset($end_date) ? date("Y-m-d",strtotime($end_date)) : '' ?>">
         </div>
         <div class="form-group">
         <label for="" class="control-label">Description</label>
-          <textarea name="task_desc" id="myTextarea"></textarea>
+        <textarea id="content" name="taskDesc" rows="5" cols="80"></textarea>
         </div>
         </div>
       </div>
@@ -252,7 +261,7 @@
 <!-- Modal for Add Modules -->
 <div class="modal fade" id="modalForAddModules" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
-   <form class="refreshFrm" id="addModuleFrm" method="post">
+  <form class="refreshFrm" id="addModuleFrm" method="post" onsubmit="submitForm(); return false;">
      <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Modules</h5>
@@ -266,10 +275,15 @@
 					<label for="" class="control-label">Title</label>
 					<input type="text" class="form-control" name="title" value="" required="">
 				</div>
-				
+
         <div class="form-group">
-        <label for="" class="control-label">Description</label>
-          <textarea id="myTextarea"></textarea>
+        <label for="description">Description:</label>
+        <textarea name="description" class="form-control" id="description" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+        <label for="" class="control-label"></label>
+        <input type="file" name="fileToUpload" id="fileToUpload" required="">
         </div>
         </div>
       </div>
@@ -342,18 +356,88 @@
   </div>
 </div>
 
-
-<!-- Modules -->
-<script src="tinymce/js/tinymce/tinymce.min.js"></script>
 <script>
- tinymce.init({
-    selector: 'textarea#myTextarea',
-    plugins: 'image media link tinydrive code imagetools',
-    height: 600,
-    toolbar: 'insertfile image link | code',
-    tinydrive_token_provider: 'URL_TO_YOUR_TOKEN_PROVIDER',
-    tinydrive_dropbox_app_key: 'YOUR_DROPBOX_APP_KEY',
-    tinydrive_google_drive_key: 'YOUR_GOOGLE_DRIVE_KEY',
-    tinydrive_google_drive_client_id: 'YOUR_GOOGLE_DRIVE_CLIENT_ID'
+      $('#description').summernote({
+        placeholder: 'Please Insert Answer',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+        popover: {
+        image: [
+          ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+          ['float', ['floatLeft', 'floatRight', 'floatNone']],
+          ['remove', ['removeMedia']]
+        ],
+        link: [
+          ['link', ['linkDialogShow', 'unlink']]
+        ],
+        table: [
+          ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+          ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+        ],
+        air: [
+          ['color', ['color']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['para', ['ul', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture']]
+        ]
+        }
       });
+    </script>
+
+
+<script>
+function submitForm() {
+    // Gather form data
+    var formData = new FormData($("#addModuleFrm")[0]);
+
+    // AJAX request
+    $.ajax({
+        type: "POST",
+        url: "query/addmod.php", // Update with your PHP script URL
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            // Handle the response from the server
+            const data = JSON.parse(response);
+            console.log(data);
+            if (data.res == "titleexist") {
+                Swal.fire(
+                    'Title Exists',
+                    'The title already exists. Please choose a different title.',
+                    'error'
+                );
+            } else if (data.res == "success") {
+                Swal.fire(
+                    'Success',
+                    data.msg + ' has been successfully added',
+                    'success'
+                );
+                // Hide the modal containing the form
+                $('#modalForAddModules').modal('hide');
+            } else if (data.res == "failed") {
+                Swal.fire(
+                    "Something Went Wrong",
+                    '',
+                    'error'
+                );
+            }
+        },
+        error: function(error) {
+            // Handle errors
+            console.log(error);
+        }
+    });
+}
+
 </script>

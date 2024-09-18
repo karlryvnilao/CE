@@ -6,9 +6,7 @@ if(!isset($_SESSION['examineeSession']['examineenakalogin']) == true) header("lo
 
  ?>
 <?php include("conn.php"); ?>
-<?php include("includes/header.php"); ?>      
-
-<?php include("includes/ui-theme.php"); ?>
+<?php include("includes/header.php"); ?>
 
 <div class="app-main">
 <?php include("includes/sidebar.php"); ?>
@@ -43,7 +41,6 @@ if(!isset($_SESSION['examineeSession']['examineenakalogin']) == true) header("lo
      }
      
    }
-   // Else ang home nga page mo display
    else
    {
      include("pages/home.php"); 
